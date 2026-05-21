@@ -5,8 +5,9 @@
 import puppeteer from "puppeteer";
 import { mkdir } from "node:fs/promises";
 
-const PORT = process.env.PORT ?? 3001;
-const BASE = `http://localhost:${PORT}`;
+const BASE =
+  process.env.BASE_URL ??
+  `http://localhost:${process.env.PORT ?? 3001}`;
 const OUT = "tmp-audit";
 
 await mkdir(OUT, { recursive: true });
