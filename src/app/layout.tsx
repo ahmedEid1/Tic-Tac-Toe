@@ -31,6 +31,12 @@ const amiri = Amiri({
 const SITE_URL = "https://ahmedeid1.github.io/Tic-Tac-Toe";
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
+// Note on URLs: Next.js prefixes link/icon hrefs with `basePath` automatically,
+// so icon URLs are written WITH the BASE_PATH (otherwise they'd be served from
+// the wrong path in production). OpenGraph / Twitter image URLs use
+// `metadataBase` and naive string concatenation — adding BASE_PATH there
+// produces a doubled path. So those get a bare leading-slash URL.
+
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: "Pharaoh's Gambit — Tic-Tac-Toe & Minimax",
@@ -67,7 +73,7 @@ export const metadata: Metadata = {
     siteName: "Pharaoh's Gambit",
     images: [
       {
-        url: `${BASE_PATH}/og.png`,
+        url: "/og.png",
         width: 1200,
         height: 630,
         alt: "Pharaoh's Gambit — Tic-Tac-Toe with an explainable Minimax AI",
@@ -79,7 +85,7 @@ export const metadata: Metadata = {
     title: "Pharaoh's Gambit — Tic-Tac-Toe & Minimax",
     description:
       "An unbeatable Minimax AI you can watch think. EN / AR. Ancient-Egypt themed.",
-    images: [`${BASE_PATH}/og.png`],
+    images: ["/og.png"],
   },
 };
 
