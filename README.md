@@ -8,6 +8,7 @@
 [![CI](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-d4af37.svg)](LICENSE)
 [![Release](https://img.shields.io/github/v/release/ahmedEid1/Tic-Tac-Toe?color=c79b3a)](https://github.com/ahmedEid1/Tic-Tac-Toe/releases)
+[![Lighthouse](https://img.shields.io/badge/Lighthouse-A11y%20100%20%C2%B7%20Best%20Practices%20100%20%C2%B7%20SEO%20100-3aa8a3)](https://ahmedeid1.github.io/Tic-Tac-Toe/)
 
 ### **▶ [Play it live](https://ahmedeid1.github.io/Tic-Tac-Toe/)**
 
