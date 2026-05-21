@@ -1,0 +1,21 @@
+{
+  "name": "Pharaoh's Gambit — Tic-Tac-Toe & Minimax",
+  "short_name": "Pharaoh's Gambit",
+  "description": "Tic-Tac-Toe against an unbeatable Minimax AI you can watch think. Ancient-Egypt themed. English / العربية.",
+  "start_url": "/Tic-Tac-Toe/",
+  "scope": "/Tic-Tac-Toe/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0a0907",
+  "theme_color": "#0a0907",
+  "lang": "en",
+  "categories": ["games", "education"],
+  "icons": [
+    {
+      "src": "/Tic-Tac-Toe/favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    }
+  ]
+}

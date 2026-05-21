@@ -58,6 +58,8 @@ export const metadata: Metadata = {
     "algorithm visualization",
   ],
   authors: [{ name: "ahmedEid1", url: "https://github.com/ahmedEid1" }],
+  alternates: { canonical: "/" },
+  manifest: `${BASE_PATH}/manifest.webmanifest`,
   icons: {
     icon: [
       { url: `${BASE_PATH}/favicon.svg`, type: "image/svg+xml" },
@@ -89,6 +91,37 @@ export const metadata: Metadata = {
   },
 };
 
+// Next 16+ wants viewport/theme-color in their own export, not metadata.
+export const viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: dark)", color: "#0a0907" },
+    { media: "(prefers-color-scheme: light)", color: "#0a0907" },
+  ],
+  colorScheme: "dark",
+};
+
+// Schema.org structured data so search engines understand this is a game
+// (improves the chance of a richer SERP entry — game name, description,
+// developer link, screenshot).
+const STRUCTURED_DATA = {
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  name: "Pharaoh's Gambit",
+  alternateName: "تحدّي الفرعون",
+  description:
+    "Tic-Tac-Toe against an unbeatable Minimax AI you can watch think — themed as the trials of Ancient Egypt. English / Arabic.",
+  url: SITE_URL,
+  image: `${SITE_URL}/og.png`,
+  applicationCategory: "Game",
+  operatingSystem: "Any (browser)",
+  inLanguage: ["en", "ar"],
+  isAccessibleForFree: true,
+  author: { "@type": "Person", name: "ahmedEid1" },
+  genre: ["Strategy", "Educational"],
+  numberOfPlayers: { "@type": "QuantitativeValue", minValue: 0, maxValue: 2 },
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -102,6 +135,11 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <LocaleEffect />
+        <script
+          type="application/ld+json"
+          // The data is static; this is just serializing an inline literal.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(STRUCTURED_DATA) }}
+        />
         {children}
       </body>
     </html>
