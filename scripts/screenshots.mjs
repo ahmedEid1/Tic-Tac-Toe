@@ -126,6 +126,31 @@ const SHOTS = [
       await new Promise((r) => setTimeout(r, 2500));
     },
   },
+  {
+    name: "mobile",
+    desc: "Mobile viewport (iPhone-ish) full page",
+    width: 390,
+    height: 1280,
+    delay: 1,
+    fullPage: true,
+    beforeScreenshot: async (page) => {
+      // Set a mobile-ish viewport explicitly so layouts react.
+      await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 2 });
+      // Let the board cells render, click center, wait for AI.
+      let found = false;
+      for (let i = 0; i < 40 && !found; i++) {
+        found = await page.evaluate(
+          () => !!document.querySelector('button[data-cell="4"]'),
+        );
+        if (!found) await new Promise((r) => setTimeout(r, 500));
+      }
+      if (!found) return;
+      await page.evaluate(() => {
+        document.querySelector('button[data-cell="4"]')?.click();
+      });
+      await new Promise((r) => setTimeout(r, 2500));
+    },
+  },
 ];
 
 for (const shot of SHOTS) {
@@ -139,6 +164,7 @@ for (const shot of SHOTS) {
       beforeScreenshot: shot.beforeScreenshot,
       overwrite: true,
       type: "png",
+      fullPage: shot.fullPage ?? false,
     });
     console.log(`  ✓ ${file}`);
   } catch (err) {

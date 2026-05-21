@@ -13,7 +13,7 @@
 
 ### **▶ [Play it live](https://ahmedeid1.github.io/Tic-Tac-Toe/)**
 
-![Pharaoh's Gambit — hero screenshot](public/screenshots/hero.png)
+![Pharaoh's Gambit — gameplay loop showing the AI thinking and responding](public/screenshots/gameplay.gif)
 
 </div>
 
@@ -52,6 +52,13 @@ The Ankh and Eye of Horus glyphs are the canonical Wikimedia Commons public-doma
       <strong>العربية — full right-to-left</strong><br/>
       The layout mirrors completely. Title, controls, candidate cards, and scoreboard all flip; the Amiri font carries the headings.<br/><br/>
       <img src="public/screenshots/arabic.png" alt="Arabic right-to-left layout" />
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" valign="top">
+      <strong>Mobile</strong><br/>
+      The whole experience stacks for narrow viewports: board at the top, sanctum and scoreboard below, then the thinking panel, then the algorithm scroll. No horizontal scrolling, no truncation.<br/><br/>
+      <p align="center"><img src="public/screenshots/mobile.png" alt="Mobile responsive layout" width="320" /></p>
     </td>
   </tr>
 </table>
@@ -200,6 +207,17 @@ scripts/
 - **Cinzel** — Natanael Gama, [Open Font License](https://fonts.google.com/specimen/Cinzel)
 - **Cormorant Garamond** — Christian Thalmann, [Open Font License](https://fonts.google.com/specimen/Cormorant+Garamond)
 - **Amiri** — Khaled Hosny, [Open Font License](https://fonts.google.com/specimen/Amiri)
+
+---
+
+## Star history
+
+<a href="https://www.star-history.com/#ahmedEid1/Tic-Tac-Toe&Date">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ahmedEid1/Tic-Tac-Toe&type=Date&theme=dark" />
+    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ahmedEid1/Tic-Tac-Toe&type=Date" />
+  </picture>
+</a>
 
 ---
 
