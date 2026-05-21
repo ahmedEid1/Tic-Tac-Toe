@@ -6,7 +6,35 @@ project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
-— nothing yet —
+### Added
+- React Testing Library + 9 component smoke tests for Board2D,
+  Scoreboard, and ModeSelector (suite is now 34 tests).
+- Mobile-first reorder of the page: header → board → thinking panel →
+  sanctum → algorithm explainer, so the AI's response is visible
+  immediately after a move on phones.
+- Reduced-motion respect, themed focus rings, skip-to-game link.
+- Lighthouse perf pass: trimmed Google Font weights, lazy-loaded
+  the algorithm explainer, added `display: swap`.
+- SEO/PWA infra: `manifest.webmanifest` (installable PWA),
+  `theme-color`, canonical URL, schema.org `VideoGame` JSON-LD.
+
+### Fixed
+- `og:image` / `twitter:image` URLs were doubled
+  (`/Tic-Tac-Toe/Tic-Tac-Toe/og.png`) — every social share preview
+  was broken. Now resolves correctly via `metadataBase`.
+- Mobile horizontal overflow caused by the pseudocode line being
+  wider than the viewport, pushing the entire layout sideways.
+  Fixed with `html { overflow-x: clip }` + `w-full min-w-0` on the
+  explainer section.
+- Algorithm explainer cards now mount immediately instead of waiting
+  for `whileInView` (which never triggered in some captures and
+  some mobile browsers).
+- Full Eye-of-Horus name used consistently (was "Eye AI" in spots).
+
+### Removed
+- Five unused create-next-app demo SVGs from `public/`.
+- Unused `three` / `@react-three/*` dependencies after the move to a
+  flat 2D board.
 
 ## [1.0.0] — 2026-05-21
 
