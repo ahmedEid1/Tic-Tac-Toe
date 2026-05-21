@@ -3,17 +3,21 @@ import { Cinzel, Cormorant_Garamond, Amiri } from "next/font/google";
 import "./globals.css";
 import LocaleEffect from "@/components/system/LocaleEffect";
 
+// Only the weights actually rendered in the UI — saves ~120 KB of woff2
+// (previously loaded 4 Cinzel + 4 Cormorant variants we never used).
 const cinzel = Cinzel({
   variable: "--font-cinzel",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["500", "600"],
+  display: "swap",
 });
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["400"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 const amiri = Amiri({
@@ -21,6 +25,7 @@ const amiri = Amiri({
   subsets: ["arabic"],
   weight: ["400", "700"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 const SITE_URL = "https://ahmedeid1.github.io/Tic-Tac-Toe";

@@ -1,3 +1,4 @@
+import dynamic from "next/dynamic";
 import Board2D from "@/components/game/Board2D";
 import Header from "@/components/ui/Header";
 import ModeSelector from "@/components/ui/ModeSelector";
@@ -5,12 +6,17 @@ import DifficultySelector from "@/components/ui/DifficultySelector";
 import Scoreboard from "@/components/ui/Scoreboard";
 import GameControls from "@/components/ui/GameControls";
 import ThinkingPanel from "@/components/ui/ThinkingPanel";
-import AlgorithmExplainer from "@/components/ui/AlgorithmExplainer";
 import VerdictBanner from "@/components/ui/VerdictBanner";
 import SoundToggle from "@/components/ui/SoundToggle";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import Footer from "@/components/ui/Footer";
 import SkipLink from "@/components/system/SkipLink";
+
+// Below-the-fold; lazy-load to keep the initial bundle small.
+const AlgorithmExplainer = dynamic(
+  () => import("@/components/ui/AlgorithmExplainer"),
+  { loading: () => <div className="h-px" /> },
+);
 
 export default function Home() {
   return (
