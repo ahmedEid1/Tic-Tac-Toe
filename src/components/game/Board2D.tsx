@@ -76,6 +76,7 @@ interface CellProps {
 }
 
 function Cell({
+  index,
   value,
   score,
   isWinning,
@@ -90,6 +91,8 @@ function Cell({
       onClick={onPlay}
       disabled={!interactable}
       aria-disabled={!interactable}
+      aria-label={`Cell ${["NW","N","NE","W","C","E","SW","S","SE"][index]}`}
+      data-cell={index}
       className={`group relative rounded-xl border transition-colors duration-300 ${
         isWinning
           ? "border-gold-bright bg-gold/15"
