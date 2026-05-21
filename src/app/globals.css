@@ -1,19 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  /* Ancient Egypt palette */
-  --color-papyrus: #f0debb;
-  --color-papyrus-dim: #d9c393;
+  /* Ancient Egypt palette — calmer values than before */
+  --color-papyrus: #ead9b7;
+  --color-papyrus-dim: #b8a47b;
   --color-sandstone: #c9a36b;
-  --color-desert: #b87333;
-  --color-gold: #d4af37;
-  --color-gold-bright: #ffd966;
-  --color-lapis: #1f4e8c;
+  --color-gold: #c79b3a;
+  --color-gold-bright: #f0c869;
+  --color-lapis: #2b5fa3;
   --color-lapis-dark: #142e54;
-  --color-turquoise: #2ea3a3;
-  --color-kohl: #1a1612;
-  --color-kohl-deep: #0c0a08;
-  --color-blood-red: #8b1a1a;
+  --color-turquoise: #3aa8a3;
+  --color-kohl: #161311;
+  --color-kohl-deep: #0a0907;
+  --color-blood-red: #a23b3b;
 
   --background: var(--color-kohl-deep);
   --foreground: var(--color-papyrus);
@@ -25,7 +24,6 @@
   --color-papyrus: var(--color-papyrus);
   --color-papyrus-dim: var(--color-papyrus-dim);
   --color-sandstone: var(--color-sandstone);
-  --color-desert: var(--color-desert);
   --color-gold: var(--color-gold);
   --color-gold-bright: var(--color-gold-bright);
   --color-lapis: var(--color-lapis);
@@ -33,8 +31,10 @@
   --color-turquoise: var(--color-turquoise);
   --color-kohl: var(--color-kohl);
   --color-kohl-deep: var(--color-kohl-deep);
+  --color-blood-red: var(--color-blood-red);
   --font-display: var(--font-cinzel);
   --font-body: var(--font-cormorant);
+  --font-arabic: var(--font-amiri);
 }
 
 html,
@@ -43,112 +43,82 @@ body {
 }
 
 body {
+  /* Calm, single subtle gradient. The previous double-radial + hieroglyph
+     pattern combined to feel noisy. One soft vignette is enough. */
   background:
     radial-gradient(
-      ellipse at top,
-      rgba(212, 175, 55, 0.18) 0%,
-      transparent 55%
-    ),
-    radial-gradient(
-      ellipse at bottom,
-      rgba(31, 78, 140, 0.22) 0%,
-      transparent 60%
+      ellipse 80% 60% at 50% 0%,
+      color-mix(in oklab, var(--color-gold) 10%, transparent) 0%,
+      transparent 70%
     ),
     var(--background);
   color: var(--foreground);
   font-family: var(--font-cormorant), Georgia, serif;
   overflow-x: hidden;
+  font-feature-settings: "kern", "liga";
 }
 
-/* Hieroglyph divider — a thin gold strip rendered with currentColor SVG-ish */
+/* Arabic gets a dedicated traditional face. */
+:lang(ar),
+[dir="rtl"] {
+  font-family: var(--font-amiri), "Times New Roman", serif;
+}
+
+/* Cinzel doesn't have Arabic glyphs — fall back gracefully for headings. */
+[lang="ar"] .font-display,
+[dir="rtl"] .font-display {
+  font-family: var(--font-amiri), serif;
+  letter-spacing: 0 !important;
+}
+
 .glyph-divider {
   height: 1px;
   background: linear-gradient(
     to right,
     transparent,
-    var(--color-gold) 20%,
-    var(--color-gold-bright) 50%,
-    var(--color-gold) 80%,
+    color-mix(in oklab, var(--color-gold) 65%, transparent) 50%,
     transparent
   );
-  opacity: 0.6;
 }
 
-/* Papyrus card surface */
 .papyrus {
-  background:
-    radial-gradient(
-      ellipse at 30% 20%,
-      rgba(255, 240, 200, 0.15) 0%,
-      transparent 50%
-    ),
-    linear-gradient(
-      135deg,
-      rgba(240, 222, 187, 0.06) 0%,
-      rgba(201, 163, 107, 0.04) 100%
-    ),
-    rgba(26, 22, 18, 0.7);
-  border: 1px solid rgba(212, 175, 55, 0.35);
-  backdrop-filter: blur(8px);
-  box-shadow:
-    0 0 0 1px rgba(212, 175, 55, 0.08) inset,
-    0 20px 60px -20px rgba(0, 0, 0, 0.6);
+  background: color-mix(in oklab, var(--color-kohl) 92%, transparent);
+  border: 1px solid color-mix(in oklab, var(--color-gold) 22%, transparent);
+  backdrop-filter: blur(6px);
 }
 
 .gold-text {
   background: linear-gradient(
     180deg,
     var(--color-gold-bright) 0%,
-    var(--color-gold) 50%,
-    #a3812b 100%
+    var(--color-gold) 60%,
+    color-mix(in oklab, var(--color-gold) 70%, black) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
 }
 
 .gold-ring {
   box-shadow:
-    0 0 0 1px rgba(212, 175, 55, 0.6),
-    0 0 24px -4px rgba(212, 175, 55, 0.4);
+    0 0 0 1px color-mix(in oklab, var(--color-gold) 50%, transparent),
+    0 0 20px -6px color-mix(in oklab, var(--color-gold) 35%, transparent);
 }
 
-/* Soft scrollbars */
-*::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+*::-webkit-scrollbar { width: 6px; height: 6px; }
 *::-webkit-scrollbar-thumb {
-  background: rgba(212, 175, 55, 0.3);
-  border-radius: 4px;
+  background: color-mix(in oklab, var(--color-gold) 30%, transparent);
+  border-radius: 3px;
 }
-*::-webkit-scrollbar-track {
-  background: transparent;
-}
+*::-webkit-scrollbar-track { background: transparent; }
 
-@keyframes float-slow {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-8px);
-  }
+@keyframes shimmer-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
 }
-.float-slow {
-  animation: float-slow 6s ease-in-out infinite;
-}
+.shimmer { animation: shimmer-pulse 2.4s ease-in-out infinite; }
 
-@keyframes shimmer {
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-.shimmer {
-  animation: shimmer 2.4s ease-in-out infinite;
+/* Range input — same accent in both directions */
+input[type="range"] {
+  accent-color: var(--color-gold);
 }

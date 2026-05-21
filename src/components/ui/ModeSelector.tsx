@@ -1,54 +1,29 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useGameStore } from "@/store/gameStore";
-import { GlyphMark } from "./GlyphMark";
+import { useStrings } from "@/lib/i18n";
 import { sound } from "@/lib/sound";
+import { GlyphMark } from "./GlyphMark";
 import type { Mode } from "@/lib/types";
 
-interface Option {
-  value: Mode;
-  label: string;
-  sub: string;
-  left: "ankh" | "eye";
-  right: "ankh" | "eye";
-}
-
-const OPTIONS: Option[] = [
-  {
-    value: "hvh",
-    label: "Mortal vs Mortal",
-    sub: "Two players, one board",
-    left: "ankh",
-    right: "eye",
-  },
-  {
-    value: "hva",
-    label: "Mortal vs Pharaoh",
-    sub: "You play the Ankh",
-    left: "ankh",
-    right: "eye",
-  },
-  {
-    value: "ava",
-    label: "Trial of the Gods",
-    sub: "Watch the AI face itself",
-    left: "ankh",
-    right: "eye",
-  },
-];
-
 export default function ModeSelector() {
+  const t = useStrings();
   const mode = useGameStore((s) => s.mode);
   const setMode = useGameStore((s) => s.setMode);
 
+  const options: { value: Mode; label: string; sub: string }[] = [
+    { value: "hvh", label: t.modeHvh, sub: t.modeHvhSub },
+    { value: "hva", label: t.modeHva, sub: t.modeHvaSub },
+    { value: "ava", label: t.modeAva, sub: t.modeAvaSub },
+  ];
+
   return (
     <div className="flex flex-col gap-2">
-      <p className="font-display text-[10px] tracking-[0.4em] text-gold uppercase">
-        Choose the Trial
+      <p className="font-display text-[10px] tracking-[0.35em] text-gold uppercase">
+        {t.chooseTrial}
       </p>
-      <div className="grid grid-cols-1 gap-2">
-        {OPTIONS.map((opt) => {
+      <div className="grid grid-cols-1 gap-1.5">
+        {options.map((opt) => {
           const active = mode === opt.value;
           return (
             <button
@@ -57,30 +32,28 @@ export default function ModeSelector() {
                 sound.play("click");
                 setMode(opt.value);
               }}
-              className={`relative group flex items-center gap-3 px-4 py-3 rounded-lg text-left transition-all border ${
+              className={`group flex items-center gap-3 px-3 py-2.5 rounded-lg text-start transition border ${
                 active
-                  ? "border-gold bg-gold/10 gold-ring"
-                  : "border-papyrus/15 hover:border-gold/50 hover:bg-papyrus/5"
+                  ? "border-gold/70 bg-gold/[0.08]"
+                  : "border-papyrus/10 hover:border-gold/40 hover:bg-papyrus/[0.02]"
               }`}
+              aria-pressed={active}
             >
-              <div className="flex items-center gap-1.5 opacity-90">
-                <GlyphMark player={opt.left} size={20} />
-                <span className="text-papyrus-dim text-xs">vs</span>
-                <GlyphMark player={opt.right} size={20} />
+              <div className="flex items-center gap-1.5 opacity-90 shrink-0">
+                <GlyphMark player="ankh" size={16} />
+                <span className="text-papyrus-dim text-[10px]">{t.versus}</span>
+                <GlyphMark player="eye" size={16} />
               </div>
-              <div className="flex-1">
-                <div
-                  className={`font-display text-sm tracking-wider ${active ? "text-gold-bright" : "text-papyrus"}`}
-                >
+              <div className="flex-1 min-w-0">
+                <div className={`font-display text-sm leading-tight ${active ? "text-gold-bright" : "text-papyrus"}`}>
                   {opt.label}
                 </div>
-                <div className="text-xs text-papyrus-dim italic">{opt.sub}</div>
+                <div className="text-[11px] text-papyrus-dim italic leading-tight mt-0.5">
+                  {opt.sub}
+                </div>
               </div>
               {active && (
-                <motion.div
-                  layoutId="mode-pip"
-                  className="h-2 w-2 rounded-full bg-gold shimmer"
-                />
+                <span className="h-1.5 w-1.5 rounded-full bg-gold shrink-0" />
               )}
             </button>
           );

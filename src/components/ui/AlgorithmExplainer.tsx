@@ -1,131 +1,67 @@
 "use client";
 
 import { motion } from "framer-motion";
-
-const SECTIONS: { title: string; body: React.ReactNode }[] = [
-  {
-    title: "The Minimax Algorithm",
-    body: (
-      <>
-        The Pharaoh thinks not by intuition but by exhausting every possible
-        future. From any position, it asks:{" "}
-        <em>
-          &ldquo;If I play here, what is the best my opponent can do? And what
-          is my best reply after that? And theirs after that?&rdquo;
-        </em>{" "}
-        It descends to the end of every story and rates the ending:{" "}
-        <span className="text-gold-bright">+10</span> for victory,{" "}
-        <span className="text-blood-red">−10</span> for defeat,{" "}
-        <span className="text-turquoise">0</span> for a draw. Then it walks back
-        up the tree, alternately choosing the <em>best</em> score (on its turn)
-        and assuming the opponent will choose the <em>worst</em> score (on
-        theirs). That assumption — that the opponent plays perfectly — is the
-        soul of minimax.
-      </>
-    ),
-  },
-  {
-    title: "Why Tic-Tac-Toe?",
-    body: (
-      <>
-        With only <strong>255,168</strong> distinct possible games, the entire
-        decision tree fits in memory. Two perfect players always draw. That
-        makes this ancient game the canonical training ground for the algorithm
-        — small enough to fully solve, rich enough to teach the logic. Watch
-        the node counter in the panel: even at the opening move, the Pharaoh
-        evaluates thousands of positions before placing a single token.
-      </>
-    ),
-  },
-  {
-    title: "Alpha-Beta Pruning",
-    body: (
-      <>
-        The Pharaoh wastes no time. As it searches, it remembers{" "}
-        <em>alpha</em> — the best score already guaranteed — and{" "}
-        <em>beta</em> — the best score the opponent will permit. When a branch
-        becomes worse than an alternative already considered, it stops:{" "}
-        <em>that branch cannot change the answer.</em> Watch the dim{" "}
-        <span className="italic">&ldquo;pruned&rdquo;</span> entries in the
-        panel — the Pharaoh knew they were irrelevant before evaluating their
-        children.
-      </>
-    ),
-  },
-  {
-    title: "Winning Faster, Losing Slower",
-    body: (
-      <>
-        A naive minimax thinks all wins are equal. The Pharaoh disagrees: a
-        scored leaf is worth <span className="font-mono">10 − depth</span> for
-        a win, <span className="font-mono">−10 + depth</span> for a loss. The
-        consequence: when victory is certain, the Pharaoh chooses the{" "}
-        <em>shortest</em> path to it. When defeat is inevitable, it{" "}
-        <em>delays</em>, hoping the mortal will err. This is why an unbeatable
-        AI can still feel <em>aggressive</em>.
-      </>
-    ),
-  },
-  {
-    title: "The Three Tiers",
-    body: (
-      <ul className="space-y-1.5 list-none pl-0">
-        <li>
-          <span className="font-display text-gold tracking-wider">Apprentice</span>{" "}
-          — no search at all. Picks at random. A first opponent for the
-          student.
-        </li>
-        <li>
-          <span className="font-display text-gold tracking-wider">Scribe</span>{" "}
-          — minimax limited to <span className="font-mono">2 plies</span>.
-          Sees danger but not the trap behind the trap.
-        </li>
-        <li>
-          <span className="font-display text-gold tracking-wider">Pharaoh</span>{" "}
-          — full minimax with alpha-beta and the faster-wins tiebreak. Never
-          loses. Will exploit any imperfect play.
-        </li>
-      </ul>
-    ),
-  },
-];
+import { useStrings } from "@/lib/i18n";
 
 export default function AlgorithmExplainer() {
+  const t = useStrings();
+
+  const sections = [
+    { title: t.sectionMinimaxTitle, body: t.sectionMinimaxBody },
+    { title: t.sectionWhyTitle,     body: t.sectionWhyBody },
+    { title: t.sectionPruneTitle,   body: t.sectionPruneBody },
+    { title: t.sectionFasterTitle,  body: t.sectionFasterBody },
+  ];
+
   return (
-    <section className="relative z-10 max-w-4xl mx-auto px-6 py-20 md:py-28">
-      <div className="text-center mb-12">
-        <p className="font-display text-[10px] tracking-[0.5em] text-gold uppercase">
-          The Scroll of the Algorithm
+    <section className="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-20">
+      <div className="text-center mb-10">
+        <p className="font-display text-[10px] tracking-[0.45em] text-gold uppercase">
+          {t.scrollTitle}
         </p>
         <h2 className="font-display text-3xl md:text-4xl gold-text mt-3">
-          How the Pharaoh Thinks
+          {t.scrollSubtitle}
         </h2>
-        <div className="glyph-divider w-48 mx-auto mt-4" />
+        <div className="glyph-divider w-40 mx-auto mt-3" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        {SECTIONS.map((section, i) => (
+      <div className="grid md:grid-cols-2 gap-4">
+        {sections.map((section, i) => (
           <motion.article
             key={section.title}
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.6, delay: i * 0.08 }}
-            className="papyrus rounded-lg p-6 leading-relaxed"
+            transition={{ duration: 0.5, delay: i * 0.06 }}
+            className="papyrus rounded-lg p-5 leading-relaxed"
           >
-            <h3 className="font-display text-lg text-gold-bright tracking-wider mb-3">
+            <h3 className="font-display text-base text-gold-bright tracking-wider mb-2">
               {section.title}
             </h3>
-            <div className="text-papyrus/90">{section.body}</div>
+            <p className="text-papyrus/90 text-sm">{section.body}</p>
           </motion.article>
         ))}
       </div>
 
-      <div className="mt-12 papyrus rounded-lg p-6">
-        <h3 className="font-display text-sm text-gold-bright tracking-[0.3em] uppercase mb-3">
-          Pseudocode
+      <div className="mt-6 papyrus rounded-lg p-5">
+        <h3 className="font-display text-sm text-gold-bright tracking-[0.25em] uppercase mb-3">
+          {t.sectionTiersTitle}
         </h3>
-        <pre className="font-mono text-xs text-papyrus/90 leading-relaxed overflow-x-auto">
+        <ul className="space-y-2 text-sm text-papyrus/90">
+          <li>{t.tierApprenticeLine}</li>
+          <li>{t.tierScribeLine}</li>
+          <li>{t.tierPharaohLine}</li>
+        </ul>
+      </div>
+
+      <div className="mt-6 papyrus rounded-lg p-5">
+        <h3 className="font-display text-sm text-gold-bright tracking-[0.25em] uppercase mb-3">
+          {t.pseudocodeTitle}
+        </h3>
+        <pre
+          dir="ltr"
+          className="font-mono text-xs text-papyrus/85 leading-relaxed overflow-x-auto"
+        >
 {`function minimax(board, player, α, β):
   if board is terminal:
     return score(board)              # +10 / 0 / -10, adjusted for depth
@@ -136,7 +72,7 @@ export default function AlgorithmExplainer() {
       v ← minimax(apply(board, m), opponent, α, β)
       best ← max(best, v)
       α ← max(α, v)
-      if β ≤ α: break               # β-cutoff — opponent won't allow this
+      if β ≤ α: break               # β-cutoff
     return best
 
   else (minimizer's turn):
@@ -145,7 +81,7 @@ export default function AlgorithmExplainer() {
       v ← minimax(apply(board, m), opponent, α, β)
       best ← min(best, v)
       β ← min(β, v)
-      if β ≤ α: break               # α-cutoff — maximizer has a better line
+      if β ≤ α: break               # α-cutoff
     return best`}
         </pre>
       </div>

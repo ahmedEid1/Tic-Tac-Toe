@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Cinzel, Cormorant_Garamond } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Amiri } from "next/font/google";
 import "./globals.css";
+import LocaleEffect from "@/components/system/LocaleEffect";
 
 const cinzel = Cinzel({
   variable: "--font-cinzel",
@@ -15,10 +16,17 @@ const cormorant = Cormorant_Garamond({
   style: ["normal", "italic"],
 });
 
+const amiri = Amiri({
+  variable: "--font-amiri",
+  subsets: ["arabic"],
+  weight: ["400", "700"],
+  style: ["normal", "italic"],
+});
+
 export const metadata: Metadata = {
-  title: "Pharaoh's Gambit — Tic-Tac-Toe & the Minimax Algorithm",
+  title: "Pharaoh's Gambit — Tic-Tac-Toe & Minimax",
   description:
-    "Play Tic-Tac-Toe against an unbeatable Minimax AI. Watch the algorithm think in real time, themed as the trials of Ancient Egypt.",
+    "Play Tic-Tac-Toe against an unbeatable Minimax AI. Watch the algorithm think in real time, themed as the trials of Ancient Egypt. English / العربية.",
 };
 
 export default function RootLayout({
@@ -29,9 +37,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${cormorant.variable} h-full antialiased`}
+      dir="ltr"
+      className={`${cinzel.variable} ${cormorant.variable} ${amiri.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <LocaleEffect />
+        {children}
+      </body>
     </html>
   );
 }

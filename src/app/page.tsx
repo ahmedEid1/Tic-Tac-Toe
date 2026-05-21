@@ -1,4 +1,4 @@
-import HieroglyphBackground from "@/components/decorative/HieroglyphBackground";
+import Board2D from "@/components/game/Board2D";
 import Header from "@/components/ui/Header";
 import ModeSelector from "@/components/ui/ModeSelector";
 import DifficultySelector from "@/components/ui/DifficultySelector";
@@ -8,26 +8,24 @@ import ThinkingPanel from "@/components/ui/ThinkingPanel";
 import AlgorithmExplainer from "@/components/ui/AlgorithmExplainer";
 import VerdictBanner from "@/components/ui/VerdictBanner";
 import SoundToggle from "@/components/ui/SoundToggle";
-import GameSceneClient from "@/components/game/GameSceneClient";
+import LanguageToggle from "@/components/ui/LanguageToggle";
+import Footer from "@/components/ui/Footer";
 
 export default function Home() {
   return (
     <div className="relative flex-1 flex flex-col">
-      <HieroglyphBackground />
+      {/* Top utility bar */}
+      <div className="relative z-20 flex items-center justify-end gap-2 px-4 md:px-8 pt-4">
+        <SoundToggle />
+        <LanguageToggle />
+      </div>
 
       <Header />
 
-      {/* Main stage: 3D scene + side panels */}
       <main className="relative z-10 px-4 md:px-8 pb-12 flex-1 flex justify-center">
-        <div className="grid w-full max-w-7xl gap-6 lg:grid-cols-[20rem_1fr_22rem]">
+        <div className="grid w-full max-w-7xl gap-5 lg:grid-cols-[18rem_minmax(0,1fr)_22rem]">
           {/* Left dock — game configuration */}
           <aside className="papyrus rounded-xl p-5 flex flex-col gap-5 order-2 lg:order-1">
-            <div className="flex items-center justify-between">
-              <p className="font-display text-[10px] tracking-[0.4em] text-gold uppercase">
-                Sanctum
-              </p>
-              <SoundToggle />
-            </div>
             <ModeSelector />
             <div className="glyph-divider" />
             <DifficultySelector />
@@ -37,14 +35,16 @@ export default function Home() {
             <GameControls />
           </aside>
 
-          {/* Center — the 3D board */}
-          <section className="relative rounded-xl overflow-hidden papyrus min-h-[480px] lg:min-h-[640px] order-1 lg:order-2">
-            <VerdictBanner />
-            <GameSceneClient />
+          {/* Center — the board */}
+          <section className="relative flex items-start justify-center pt-2 order-1 lg:order-2">
+            <div className="relative w-full max-w-[560px]">
+              <VerdictBanner />
+              <Board2D />
+            </div>
           </section>
 
           {/* Right dock — minimax visualization */}
-          <aside className="order-3 min-h-[480px] lg:min-h-[640px]">
+          <aside className="order-3 lg:max-h-[640px]">
             <ThinkingPanel />
           </aside>
         </div>
@@ -54,9 +54,7 @@ export default function Home() {
 
       <AlgorithmExplainer />
 
-      <footer className="relative z-10 text-center py-6 text-papyrus-dim text-xs italic border-t border-gold/15">
-        Built with Next.js, React Three Fiber & a touch of papyrus dust.
-      </footer>
+      <Footer />
     </div>
   );
 }
