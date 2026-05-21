@@ -4,7 +4,8 @@
 
 **Tic-Tac-Toe against an unbeatable Minimax AI — themed as the trials of Ancient Egypt, in English and Arabic.**
 
-[![Deploy to GitHub Pages](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/deploy.yml/badge.svg)](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/deploy.yml)
+[![Deploy](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/deploy.yml/badge.svg)](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/deploy.yml)
+[![CI](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-d4af37.svg)](LICENSE)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
