@@ -52,12 +52,6 @@ async function wait(ms) {
   await new Promise((r) => setTimeout(r, ms));
 }
 
-async function click(cell) {
-  await page.evaluate((c) => {
-    document.querySelector(`button[data-cell="${c}"]`)?.click();
-  }, cell);
-}
-
 // Storyboard: switch to Trial-of-the-Gods (Apprentice vs Pharaoh) and let
 // the unbeatable AI defeat the random one — gives a satisfying complete arc
 // from empty board → multiple plies → glowing winning row + verdict banner,

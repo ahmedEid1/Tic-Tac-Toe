@@ -10,10 +10,13 @@ import VerdictBanner from "@/components/ui/VerdictBanner";
 import SoundToggle from "@/components/ui/SoundToggle";
 import LanguageToggle from "@/components/ui/LanguageToggle";
 import Footer from "@/components/ui/Footer";
+import SkipLink from "@/components/system/SkipLink";
 
 export default function Home() {
   return (
     <div className="relative flex-1 flex flex-col">
+      <SkipLink />
+
       {/* Top utility bar */}
       <div className="relative z-20 flex items-center justify-end gap-2 px-4 md:px-8 pt-4">
         <SoundToggle />
@@ -36,7 +39,10 @@ export default function Home() {
           </aside>
 
           {/* Center — the board */}
-          <section className="relative flex items-start justify-center pt-2 order-1 lg:order-2">
+          <section
+            id="game-board"
+            className="relative flex items-start justify-center pt-2 order-1 lg:order-2 scroll-mt-4"
+          >
             <div className="relative w-full max-w-[560px]">
               <VerdictBanner />
               <Board2D />

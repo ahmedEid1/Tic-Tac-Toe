@@ -49,6 +49,7 @@ export interface Strings {
   speed: string;
   muteOn: string;
   muteOff: string;
+  skipToGame: string;
 
   // Verdict
   gloryToAnkh: string;
@@ -142,6 +143,7 @@ const EN: Strings = {
   speed: "Speed",
   muteOn: "Unmute sound",
   muteOff: "Mute sound",
+  skipToGame: "Skip to game",
 
   gloryToAnkh: "Glory to the Ankh",
   gloryToEye: "Glory to the Eye of Horus",
@@ -237,6 +239,7 @@ const AR: Strings = {
   speed: "السرعة",
   muteOn: "تشغيل الصوت",
   muteOff: "كتم الصوت",
+  skipToGame: "تخطَّ إلى اللعبة",
 
   gloryToAnkh: "المجد للعنخ",
   gloryToEye: "المجد لعين حورس",
