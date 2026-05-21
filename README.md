@@ -11,6 +11,7 @@
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss)](https://tailwindcss.com)
 [![Languages](https://img.shields.io/badge/Languages-EN%20%2F%20العربية-2b5fa3)](#bilingual-support)
+[![Release](https://img.shields.io/github/v/release/ahmedEid1/Tic-Tac-Toe?color=c79b3a)](https://github.com/ahmedEid1/Tic-Tac-Toe/releases)
 
 ### **▶ [Play it live](https://ahmedeid1.github.io/Tic-Tac-Toe/)**
 
