@@ -1,26 +1,154 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Ancient Egypt palette */
+  --color-papyrus: #f0debb;
+  --color-papyrus-dim: #d9c393;
+  --color-sandstone: #c9a36b;
+  --color-desert: #b87333;
+  --color-gold: #d4af37;
+  --color-gold-bright: #ffd966;
+  --color-lapis: #1f4e8c;
+  --color-lapis-dark: #142e54;
+  --color-turquoise: #2ea3a3;
+  --color-kohl: #1a1612;
+  --color-kohl-deep: #0c0a08;
+  --color-blood-red: #8b1a1a;
+
+  --background: var(--color-kohl-deep);
+  --foreground: var(--color-papyrus);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-papyrus: var(--color-papyrus);
+  --color-papyrus-dim: var(--color-papyrus-dim);
+  --color-sandstone: var(--color-sandstone);
+  --color-desert: var(--color-desert);
+  --color-gold: var(--color-gold);
+  --color-gold-bright: var(--color-gold-bright);
+  --color-lapis: var(--color-lapis);
+  --color-lapis-dark: var(--color-lapis-dark);
+  --color-turquoise: var(--color-turquoise);
+  --color-kohl: var(--color-kohl);
+  --color-kohl-deep: var(--color-kohl-deep);
+  --font-display: var(--font-cinzel);
+  --font-body: var(--font-cormorant);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html,
+body {
+  height: 100%;
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(
+      ellipse at top,
+      rgba(212, 175, 55, 0.18) 0%,
+      transparent 55%
+    ),
+    radial-gradient(
+      ellipse at bottom,
+      rgba(31, 78, 140, 0.22) 0%,
+      transparent 60%
+    ),
+    var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-cormorant), Georgia, serif;
+  overflow-x: hidden;
+}
+
+/* Hieroglyph divider — a thin gold strip rendered with currentColor SVG-ish */
+.glyph-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-gold) 20%,
+    var(--color-gold-bright) 50%,
+    var(--color-gold) 80%,
+    transparent
+  );
+  opacity: 0.6;
+}
+
+/* Papyrus card surface */
+.papyrus {
+  background:
+    radial-gradient(
+      ellipse at 30% 20%,
+      rgba(255, 240, 200, 0.15) 0%,
+      transparent 50%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(240, 222, 187, 0.06) 0%,
+      rgba(201, 163, 107, 0.04) 100%
+    ),
+    rgba(26, 22, 18, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  backdrop-filter: blur(8px);
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 55, 0.08) inset,
+    0 20px 60px -20px rgba(0, 0, 0, 0.6);
+}
+
+.gold-text {
+  background: linear-gradient(
+    180deg,
+    var(--color-gold-bright) 0%,
+    var(--color-gold) 50%,
+    #a3812b 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+}
+
+.gold-ring {
+  box-shadow:
+    0 0 0 1px rgba(212, 175, 55, 0.6),
+    0 0 24px -4px rgba(212, 175, 55, 0.4);
+}
+
+/* Soft scrollbars */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.3);
+  border-radius: 4px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+.float-slow {
+  animation: float-slow 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.shimmer {
+  animation: shimmer 2.4s ease-in-out infinite;
 }
