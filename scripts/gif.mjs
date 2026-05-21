@@ -58,39 +58,86 @@ async function click(cell) {
   }, cell);
 }
 
-// Storyboard: build a satisfying mini-game.
-// Human plays center, AI responds, human plays a corner, AI responds, …
+// Storyboard: switch to Trial-of-the-Gods (Apprentice vs Pharaoh) and let
+// the unbeatable AI defeat the random one — gives a satisfying complete arc
+// from empty board → multiple plies → glowing winning row + verdict banner,
+// all in ~10 seconds of looping playback.
 const FRAMES = [];
 
-// Frame 0: pristine board, brief pause for the eye.
+console.log("→ switching to Trial of the Gods + Apprentice Ankh");
+
+// Pause AI v AI auto-play first so we can configure cleanly.
+await page.evaluate(() => {
+  // Switch to Trial of the Gods (AvA).
+  const ava = Array.from(document.querySelectorAll("button")).find((b) =>
+    /trial of the gods/i.test(b.textContent ?? ""),
+  );
+  ava?.click();
+});
+await wait(400);
+
+// Pause the autoplay so the board sits empty long enough for the first
+// frame, then resume after the first capture.
+await page.evaluate(() => {
+  const pause = Array.from(document.querySelectorAll("button")).find((b) =>
+    /^pause$/i.test((b.textContent ?? "").trim()),
+  );
+  pause?.click();
+});
+await wait(300);
+
+// Set Ankh AI to Apprentice so the game is decisive.
+await page.evaluate(() => {
+  const ap = Array.from(document.querySelectorAll("button")).filter((b) =>
+    /^apprentice$/i.test((b.textContent ?? "").trim()),
+  );
+  ap[0]?.click(); // first Apprentice button = Ankh AI
+});
+await wait(300);
+
+// Speed slider: slow enough that the AI's thinking panel is legible
+// in each frame, but fast enough that the whole game finishes in
+// ~10 seconds of capture.
+await page.evaluate(() => {
+  const slider = document.querySelector('input[type="range"]');
+  if (slider) {
+    const setter = Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      "value",
+    )?.set;
+    setter?.call(slider, "1600"); // ~920 ms between AI moves
+    slider.dispatchEvent(new Event("input", { bubbles: true }));
+  }
+});
+await wait(300);
+
+// Frame 0: configured but board still empty.
 FRAMES.push({ delay: 900, png: await frame() });
 
-// Move 1 — Human plays center (Ankh).
-await click(4);
-await wait(450);
-FRAMES.push({ delay: 600, png: await frame() });
+// Resume autoplay and let the game unfold; capture frames at intervals.
+await page.evaluate(() => {
+  const resume = Array.from(document.querySelectorAll("button")).find((b) =>
+    /^resume$/i.test((b.textContent ?? "").trim()),
+  );
+  resume?.click();
+});
 
-// Wait for AI's first move + thinking panel.
-await wait(1500);
-FRAMES.push({ delay: 900, png: await frame() });
+// Capture frames every ~900ms (one per AI move ~roughly) while game plays out.
+for (let i = 0; i < 12; i++) {
+  await wait(900);
+  FRAMES.push({ delay: 450, png: await frame() });
 
-// Move 2 — Human plays a corner (NW).
-await click(0);
-await wait(450);
-FRAMES.push({ delay: 600, png: await frame() });
-
-// AI's second move.
-await wait(1700);
-FRAMES.push({ delay: 900, png: await frame() });
-
-// Move 3 — Human plays the opposite corner (SE), classic fork setup.
-await click(8);
-await wait(450);
-FRAMES.push({ delay: 600, png: await frame() });
-
-// AI defends.
-await wait(1700);
-FRAMES.push({ delay: 1300, png: await frame() }); // pause longer on the last frame before looping
+  // If the game ended (verdict banner visible), capture an extra long-hold
+  // final frame and stop.
+  const done = await page.evaluate(() =>
+    /glory|sands|المجد|تساوت/i.test(document.body.innerText),
+  );
+  if (done) {
+    await wait(800);
+    FRAMES.push({ delay: 2000, png: await frame() }); // long hold on victory
+    break;
+  }
+}
 
 await browser.close();
 console.log(`→ ${FRAMES.length} frames captured. Encoding…`);
