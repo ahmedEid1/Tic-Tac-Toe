@@ -47,7 +47,7 @@ jobs:
         run: touch out/.nojekyll
 
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
         with:
           # Auto-enables Pages on first run if it isn't already on. (Requires
           # the repository to be public on free plans.)
