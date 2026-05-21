@@ -14,7 +14,7 @@ export default function AlgorithmExplainer() {
   ];
 
   return (
-    <section className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20">
+    <section className="relative z-10 w-full max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20 min-w-0">
       <div className="text-center mb-8 md:mb-10">
         <p className="font-display text-[10px] tracking-[0.45em] text-gold uppercase">
           {t.scrollTitle}

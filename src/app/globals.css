@@ -42,6 +42,13 @@ body {
   height: 100%;
 }
 
+/* Permanently clip any horizontal overflow at the document level. This is
+   a defence-in-depth measure on top of per-component `min-w-0` constraints —
+   nothing inside the page should ever cause the window to scroll sideways. */
+html {
+  overflow-x: clip;
+}
+
 body {
   /* Calm, single subtle gradient. The previous double-radial + hieroglyph
      pattern combined to feel noisy. One soft vignette is enough. */
