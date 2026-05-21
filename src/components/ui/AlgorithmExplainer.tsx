@@ -14,35 +14,35 @@ export default function AlgorithmExplainer() {
   ];
 
   return (
-    <section className="relative z-10 max-w-4xl mx-auto px-6 py-16 md:py-20">
-      <div className="text-center mb-10">
+    <section className="relative z-10 max-w-4xl mx-auto px-4 md:px-6 py-12 md:py-20">
+      <div className="text-center mb-8 md:mb-10">
         <p className="font-display text-[10px] tracking-[0.45em] text-gold uppercase">
           {t.scrollTitle}
         </p>
-        <h2 className="font-display text-3xl md:text-4xl gold-text mt-3">
+        <h2 className="font-display text-2xl md:text-4xl gold-text mt-2 md:mt-3">
           {t.scrollSubtitle}
         </h2>
-        <div className="glyph-divider w-40 mx-auto mt-3" />
+        <div className="glyph-divider w-32 md:w-40 mx-auto mt-3" />
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-3 md:gap-4">
         {sections.map((section, i) => (
           <motion.article
             key={section.title}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: i * 0.06 }}
-            className="papyrus rounded-lg p-5 leading-relaxed"
+            className="papyrus rounded-lg p-4 md:p-5 leading-relaxed min-w-0"
           >
             <h3 className="font-display text-base text-gold-bright tracking-wider mb-2">
               {section.title}
             </h3>
-            <p className="text-papyrus/90 text-sm">{section.body}</p>
+            <p className="text-papyrus/90 text-sm break-words">{section.body}</p>
           </motion.article>
         ))}
       </div>
 
-      <div className="mt-6 papyrus rounded-lg p-5">
+      <div className="mt-3 md:mt-6 papyrus rounded-lg p-4 md:p-5 min-w-0">
         <h3 className="font-display text-sm text-gold-bright tracking-[0.25em] uppercase mb-3">
           {t.sectionTiersTitle}
         </h3>
@@ -53,14 +53,21 @@ export default function AlgorithmExplainer() {
         </ul>
       </div>
 
-      <div className="mt-6 papyrus rounded-lg p-5">
+      <div className="mt-3 md:mt-6 papyrus rounded-lg p-4 md:p-5 min-w-0">
         <h3 className="font-display text-sm text-gold-bright tracking-[0.25em] uppercase mb-3">
           {t.pseudocodeTitle}
         </h3>
-        <pre
-          dir="ltr"
-          className="font-mono text-xs text-papyrus/85 leading-relaxed overflow-x-auto"
-        >
+        {/*
+          `min-w-0` on the wrapper + `overflow-x-auto` on the <pre> lets the
+          pseudocode scroll horizontally inside the card without forcing the
+          card itself wider than the mobile viewport. Smaller font on mobile
+          also fits ~52 chars per line without scrolling on a 375 px screen.
+        */}
+        <div className="min-w-0 overflow-x-auto">
+          <pre
+            dir="ltr"
+            className="font-mono text-[10px] sm:text-xs text-papyrus/85 leading-relaxed"
+          >
 {`function minimax(board, player, α, β):
   if board is terminal:
     return score(board)              # +10 / 0 / -10, adjusted for depth
@@ -82,7 +89,8 @@ export default function AlgorithmExplainer() {
       β ← min(β, v)
       if β ≤ α: break               # α-cutoff
     return best`}
-        </pre>
+          </pre>
+        </div>
       </div>
     </section>
   );
