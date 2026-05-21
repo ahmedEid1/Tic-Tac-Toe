@@ -178,7 +178,10 @@ export default function ThinkingPanel() {
           </p>
         </div>
         {trace && (
-          <div className="text-end font-mono text-[10px] text-papyrus-dim leading-tight shrink-0">
+          <div
+            dir="ltr"
+            className="text-end font-mono text-[10px] text-papyrus-dim leading-tight shrink-0"
+          >
             <div>
               {trace.nodesEvaluated.toLocaleString()} {t.nodes}
             </div>

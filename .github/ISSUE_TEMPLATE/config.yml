@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Live demo
+    url: https://ahmedeid1.github.io/Tic-Tac-Toe/
+    about: Try the game before filing an issue
+  - name: Discussions
+    url: https://github.com/ahmedEid1/Tic-Tac-Toe/discussions
+    about: Ask a question or share a thought instead of opening a ticket

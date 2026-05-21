@@ -37,6 +37,7 @@ export interface Strings {
   ankh: string;
   eye: string;
   draws: string;
+  toMove: string;
 
   // Controls
   sanctum: string;
@@ -116,7 +117,7 @@ const EN: Strings = {
 
   aiWisdom: "Wisdom of the AI",
   ankhAi: "Ankh AI",
-  eyeAi: "Eye AI",
+  eyeAi: "Eye of Horus AI",
   diffApprentice: "Apprentice",
   diffApprenticeSub: "random scribe",
   diffScribe: "Scribe",
@@ -128,8 +129,9 @@ const EN: Strings = {
 
   ledger: "Scribe's Ledger",
   ankh: "Ankh",
-  eye: "Eye",
+  eye: "Eye of Horus",
   draws: "Draws",
+  toMove: "to move",
 
   sanctum: "Sanctum",
   newTrial: "New Trial",
@@ -142,7 +144,7 @@ const EN: Strings = {
   muteOff: "Mute sound",
 
   gloryToAnkh: "Glory to the Ankh",
-  gloryToEye: "Glory to the Eye",
+  gloryToEye: "Glory to the Eye of Horus",
   sandsAreEven: "The Sands Are Even",
 
   thinkingTitle: "The Pharaoh Contemplates",
@@ -210,7 +212,7 @@ const AR: Strings = {
 
   aiWisdom: "حكمة الذكاء",
   ankhAi: "ذكاء العنخ",
-  eyeAi: "ذكاء العين",
+  eyeAi: "ذكاء عين حورس",
   diffApprentice: "مُتدرِّب",
   diffApprenticeSub: "كاتب عشوائي",
   diffScribe: "كاتب",
@@ -222,8 +224,9 @@ const AR: Strings = {
 
   ledger: "سجلّ الكاتب",
   ankh: "العنخ",
-  eye: "العين",
+  eye: "عين حورس",
   draws: "تعادل",
+  toMove: "دوره",
 
   sanctum: "الحرم",
   newTrial: "محاكمة جديدة",
@@ -236,7 +239,7 @@ const AR: Strings = {
   muteOff: "كتم الصوت",
 
   gloryToAnkh: "المجد للعنخ",
-  gloryToEye: "المجد للعين",
+  gloryToEye: "المجد لعين حورس",
   sandsAreEven: "تساوت الرّمال",
 
   thinkingTitle: "الفرعون يتأمّل",

@@ -142,26 +142,16 @@ Open <http://localhost:3000> in your browser.
 
 ## Deploying
 
-### One-click — Vercel (recommended, works with private repos)
+The repo ships with a GitHub Actions workflow at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) that builds a static export with `NEXT_PUBLIC_BASE_PATH=/Tic-Tac-Toe` and publishes to **GitHub Pages** on every push to `main`. The workflow auto-enables Pages on the first run.
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FahmedEid1%2FTic-Tac-Toe&project-name=pharaohs-gambit&repository-name=pharaohs-gambit)
+To deploy your own fork:
 
-Vercel auto-detects the Next.js project; no environment variables required. On a root domain you can leave `NEXT_PUBLIC_BASE_PATH` unset.
-
-### GitHub Pages (free, requires public repo)
-
-The repo ships with a GitHub Actions workflow at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) that builds the static export with `NEXT_PUBLIC_BASE_PATH=/Tic-Tac-Toe` and publishes to Pages on every push to `main`. The workflow self-enables Pages on first run.
-
-To deploy to **your own fork**:
-
-1. Fork the repo. (Pages on free plans requires the repo to be **public**.)
-2. Open **Settings → Pages** and confirm **Source = GitHub Actions** (the workflow does this for you on free plans where API enablement is allowed; set it manually otherwise).
-3. Push to `main` (or trigger the workflow manually from the Actions tab). The live URL appears once the run completes.
+1. Fork the repo. It must be **public** for Pages to work on the free plan.
+2. Open **Settings → Pages** and confirm **Source = GitHub Actions** (the workflow does this for you on the first run; set it manually if needed).
+3. Push to `main` (or trigger the workflow from the Actions tab). The live URL appears once the run completes.
 4. If your repo isn't named `Tic-Tac-Toe`, update `NEXT_PUBLIC_BASE_PATH` in `deploy.yml`.
 
-### Other static hosts
-
-`npm run build` produces a fully static export in `out/` — drop it into any static host (Netlify, Cloudflare Pages, S3, nginx, …). On a root domain leave `NEXT_PUBLIC_BASE_PATH` unset; under a sub-path set it to the path, e.g. `/Tic-Tac-Toe`.
+`npm run build` produces a fully static export in `out/` — usable with any static host (Netlify, Cloudflare Pages, S3, nginx, …). On a root domain leave `NEXT_PUBLIC_BASE_PATH` unset; under a sub-path set it to the path, e.g. `/Tic-Tac-Toe`.
 
 ---
 

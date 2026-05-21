@@ -1,0 +1,67 @@
+name: Bug report
+description: Something doesn't work the way it should.
+title: "[Bug] "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! A few questions to help us reproduce.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you see instead?
+      placeholder: I clicked the center cell and the AI didn't respond. I expected a token to appear in another cell within a second.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open the game
+        2. Click X
+        3. Notice Y
+    validations:
+      required: true
+
+  - type: dropdown
+    id: browser
+    attributes:
+      label: Browser
+      options:
+        - Chrome
+        - Firefox
+        - Safari
+        - Edge
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS
+      placeholder: macOS 14 / Windows 11 / iOS 17 / …
+    validations:
+      required: true
+
+  - type: dropdown
+    id: language
+    attributes:
+      label: Language at the time of the bug
+      options:
+        - English
+        - العربية
+        - Either / not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: console
+    attributes:
+      label: Browser console errors (if any)
+      render: shell

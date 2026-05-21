@@ -1,0 +1,45 @@
+name: New translation
+description: Help translate the UI into another language.
+title: "[Translation] "
+labels: [i18n, good first issue]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        All UI strings live in `src/lib/i18n.ts`. Open an issue first
+        so we can coordinate the locale code and any RTL / typography
+        needs, then send a PR.
+
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: e.g. Français, Español, 中文, 日本語
+    validations:
+      required: true
+
+  - type: input
+    id: locale
+    attributes:
+      label: Locale code
+      placeholder: e.g. fr, es, zh, ja
+    validations:
+      required: true
+
+  - type: dropdown
+    id: direction
+    attributes:
+      label: Text direction
+      options:
+        - Left-to-right
+        - Right-to-left
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: willing
+    attributes:
+      label: Are you willing to send the PR yourself?
+      options:
+        - label: Yes, I'll open the PR
+        - label: I'd like someone else to do it

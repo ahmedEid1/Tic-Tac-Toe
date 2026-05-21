@@ -26,41 +26,49 @@ export default function Board2D() {
   const interactable = result.status === "playing" && !aiThinking && !turnIsAi;
 
   return (
-    <div className="relative w-full max-w-[560px] aspect-square">
-      {/* Outer ornamental frame */}
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-papyrus/[0.06] to-lapis/[0.04] border border-gold/30 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)]" />
-
-      <div className="relative grid grid-cols-3 grid-rows-3 gap-2 p-5 h-full">
-        {board.map((cell, i) => (
-          <Cell
-            key={i}
-            index={i}
-            value={cell}
-            score={trace?.candidateScores?.[i]}
-            isWinning={!!winLine && winLine.includes(i as 0)}
-            interactable={interactable && cell === null}
-            nextPlayer={turn}
-            onPlay={() => playerMove(i)}
-          />
-        ))}
-        {winLine && <WinStroke line={winLine as [number, number, number]} />}
+    <div className="relative w-full max-w-[560px] flex flex-col gap-3">
+      {/* Turn indicator — lives ABOVE the board, never overlaps cells */}
+      <div className="flex items-center justify-between h-5 px-1">
+        <AnimatePresence mode="wait">
+          {result.status === "playing" && (
+            <motion.div
+              key={turn}
+              initial={{ opacity: 0, y: -4 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -4 }}
+              transition={{ duration: 0.25 }}
+              className="font-display text-[10px] tracking-[0.35em] text-papyrus-dim uppercase flex items-center gap-2"
+            >
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full bg-gold shimmer"
+                aria-hidden
+              />
+              <span>{turn === "ankh" ? t.ankh : t.eye}</span>
+              <span className="text-papyrus-dim/60 text-[10px]">{t.toMove}</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* Subtle turn indicator chip in the corner */}
-      <AnimatePresence>
-        {result.status === "playing" && (
-          <motion.div
-            key={turn}
-            initial={{ opacity: 0, y: -4 }}
-            animate={{ opacity: 0.85, y: 0 }}
-            exit={{ opacity: 0 }}
-            className="absolute top-3 ltr:left-3 rtl:right-3 font-display text-[10px] tracking-[0.3em] text-papyrus-dim uppercase flex items-center gap-2"
-          >
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-gold shimmer" />
-            <span>{turn === "ankh" ? t.ankh : t.eye}</span>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Board */}
+      <div className="relative w-full aspect-square">
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-papyrus/[0.06] to-lapis/[0.04] border border-gold/30 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.6)]" />
+        <div className="relative grid grid-cols-3 grid-rows-3 gap-2 p-5 h-full">
+          {board.map((cell, i) => (
+            <Cell
+              key={i}
+              index={i}
+              value={cell}
+              score={trace?.candidateScores?.[i]}
+              isWinning={!!winLine && winLine.includes(i as 0)}
+              interactable={interactable && cell === null}
+              nextPlayer={turn}
+              onPlay={() => playerMove(i)}
+            />
+          ))}
+          {winLine && <WinStroke line={winLine as [number, number, number]} />}
+        </div>
+      </div>
     </div>
   );
 }
