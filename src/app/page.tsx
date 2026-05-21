@@ -33,8 +33,12 @@ export default function Home() {
 
       <main className="relative z-10 px-4 md:px-8 pb-12 flex-1 flex justify-center">
         <div className="grid w-full max-w-7xl gap-5 lg:grid-cols-[18rem_minmax(0,1fr)_22rem]">
-          {/* Left dock — game configuration */}
-          <aside className="papyrus rounded-xl p-5 flex flex-col gap-5 order-2 lg:order-1">
+          {/* Mobile order: board → thinking → sanctum. The thinking panel
+              must be directly below the board so a move's AI response is
+              visible without scrolling past the sanctum controls. */}
+
+          {/* Sanctum — game configuration. Last on mobile, first on desktop. */}
+          <aside className="papyrus rounded-xl p-5 flex flex-col gap-5 order-3 lg:order-1">
             <ModeSelector />
             <div className="glyph-divider" />
             <DifficultySelector />
@@ -44,7 +48,7 @@ export default function Home() {
             <GameControls />
           </aside>
 
-          {/* Center — the board */}
+          {/* Center — the board. */}
           <section
             id="game-board"
             className="relative flex items-start justify-center pt-2 order-1 lg:order-2 scroll-mt-4"
@@ -55,8 +59,8 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Right dock — minimax visualization */}
-          <aside className="order-3 lg:max-h-[640px]">
+          {/* Right dock on desktop, immediately below the board on mobile. */}
+          <aside className="order-2 lg:order-3 lg:max-h-[640px]">
             <ThinkingPanel />
           </aside>
         </div>

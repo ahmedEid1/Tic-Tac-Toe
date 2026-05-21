@@ -42,3 +42,4 @@ next-env.d.ts
 
 # Local Claude state — not for source control
 .claude/
+tmp-audit/
