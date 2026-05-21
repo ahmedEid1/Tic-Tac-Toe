@@ -45,6 +45,10 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+        with:
+          # Auto-enables Pages on first run if it isn't already on. (Requires
+          # the repository to be public on free plans.)
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
