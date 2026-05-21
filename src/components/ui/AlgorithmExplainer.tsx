@@ -30,8 +30,7 @@ export default function AlgorithmExplainer() {
           <motion.article
             key={section.title}
             initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: i * 0.06 }}
             className="papyrus rounded-lg p-5 leading-relaxed"
           >

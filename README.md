@@ -7,10 +7,6 @@
 [![Deploy](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/deploy.yml/badge.svg)](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/deploy.yml)
 [![CI](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/ci.yml/badge.svg)](https://github.com/ahmedEid1/Tic-Tac-Toe/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-d4af37.svg)](LICENSE)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev)
-[![Tailwind CSS v4](https://img.shields.io/badge/Tailwind-v4-38BDF8?logo=tailwindcss)](https://tailwindcss.com)
-[![Languages](https://img.shields.io/badge/Languages-EN%20%2F%20العربية-2b5fa3)](#bilingual-support)
 [![Release](https://img.shields.io/github/v/release/ahmedEid1/Tic-Tac-Toe?color=c79b3a)](https://github.com/ahmedEid1/Tic-Tac-Toe/releases)
 
 ### **▶ [Play it live](https://ahmedeid1.github.io/Tic-Tac-Toe/)**
@@ -21,49 +17,27 @@
 
 ---
 
-## What is this?
+## Glory to the victor
 
-Pharaoh's Gambit is the classic three-in-a-row game, rebuilt as a small piece of interactive teaching material:
+![Eye of Horus wins three in a row with a glowing brush stroke and "Glory to the Eye of Horus" verdict banner](public/screenshots/winning.png)
 
-- **Play** against a friend, against the Pharaoh, or watch two gods play each other.
-- **Watch the AI think** — every move it considered, the guaranteed outcome of each, and the branches it skipped via α-β pruning, all rendered as visual mini-boards.
-- **Read the algorithm** — a short scroll explains Minimax, α-β pruning, and the depth-penalty tiebreak that makes the AI prefer faster wins and slower losses.
-- **Switch language** — full English / **العربية** with right-to-left layout and a traditional Naskh font.
-
-The Ankh and Eye of Horus glyphs are the canonical Wikimedia Commons public-domain SVGs, rendered inline so the colour scheme stays themable.
+When the trial ends, the winning row glows gold and a verdict banner names the victor — *Glory to the Ankh*, *Glory to the Eye of Horus*, or *The Sands Are Even*.
 
 ---
 
-## Screenshots
+## The Pharaoh, thinking
 
-<table>
-  <tr>
-    <td width="50%" valign="top">
-      <strong>The Pharaoh, thinking</strong><br/>
-      Every empty cell shows the AI's evaluation; the right panel breaks each candidate move into a mini-board with its rated outcome.<br/><br/>
-      <img src="public/screenshots/thinking.png" alt="AI thinking with mini-board candidate cards" />
-    </td>
-    <td width="50%" valign="top">
-      <strong>A finished trial</strong><br/>
-      An Apprentice Ankh AI falls to a Pharaoh Eye AI. The winning row glows; the verdict banner announces the victor.<br/><br/>
-      <img src="public/screenshots/winning.png" alt="Eye wins three in a row" />
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" valign="top">
-      <strong>العربية — full right-to-left</strong><br/>
-      The layout mirrors completely. Title, controls, candidate cards, and scoreboard all flip; the Amiri font carries the headings.<br/><br/>
-      <img src="public/screenshots/arabic.png" alt="Arabic right-to-left layout" />
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2" valign="top">
-      <strong>Mobile</strong><br/>
-      The whole experience stacks for narrow viewports: board at the top, sanctum and scoreboard below, then the thinking panel, then the algorithm scroll. No horizontal scrolling, no truncation.<br/><br/>
-      <p align="center"><img src="public/screenshots/mobile.png" alt="Mobile responsive layout" width="320" /></p>
-    </td>
-  </tr>
-</table>
+![Mid-game: the Pharaoh evaluating every candidate move as a mini-board, with scores and outcomes](public/screenshots/thinking.png)
+
+Every empty cell shows the AI's minimax score in-place. The right-hand panel breaks each candidate move into a mini-board diagram with its rated outcome — *win in 2*, *draw*, *lose in 4*. The chosen move wears the gold star.
+
+---
+
+## العربية — right-to-left
+
+![Full Arabic layout with all controls and the thinking panel flipped right-to-left, set in Amiri serif](public/screenshots/arabic.png)
+
+The whole interface mirrors. Title, controls, candidate cards, scoreboard — all flip. Arabic is set in the **Amiri** traditional Naskh face. Naming is faithful to Egyptian myth — *تحدّي الفرعون* (Pharaoh's Challenge), *نزال الآلهة* (Contest of the Gods), *تساوت الرّمال* (the sands have evened).
 
 ---
 
@@ -73,57 +47,42 @@ The Ankh and Eye of Horus glyphs are the canonical Wikimedia Commons public-doma
 |---|---|
 | **Three modes** | Mortal vs Mortal, Mortal vs Pharaoh, Trial of the Gods (AI v AI) |
 | **Three AI tiers** | Apprentice (random), Scribe (depth-2 minimax), Pharaoh (full minimax + α-β + faster-wins tiebreak) |
-| **Algorithm visualization** | Every move the AI considered, with mini-board diagrams and plain-language outcome phrasing ("draw", "win in 2", "lose in 4") |
+| **Algorithm visualization** | Every move the AI considered, as a mini-board diagram with a plain-language outcome |
 | **Live cell scores** | Each empty cell shows the AI's minimax score for that move |
-| **Bilingual** | English & Arabic, with `dir="rtl"` flip and Amiri serif for Arabic |
-| **AI vs AI controls** | Play / pause / step / variable speed slider |
-| **Scoreboard** | Per-session Ankh / Draws / Eye tally — "Scribe's Ledger" |
-| **Synthesized sound** | Token-place thud, win fanfare, draw chime, thinking shimmer — all via Web Audio, no asset files |
-| **Authentic glyphs** | Wikimedia public-domain Ankh and Wedjat eye SVGs, rendered inline |
-| **Accessible** | `aria-label`s on every control, keyboard-actionable cells, no-motion-friendly transitions |
+| **Bilingual** | English & Arabic with `dir="rtl"` flip and Amiri serif |
+| **AI vs AI controls** | Play / pause / step / variable-speed slider |
+| **Scoreboard** | Per-session Ankh / Draws / Eye-of-Horus tally — *Scribe's Ledger* |
+| **Synthesized sound** | Token-place, win fanfare, draw chime, thinking shimmer — Web Audio, no asset files |
+| **Authentic glyphs** | Wikimedia public-domain Ankh and Wedjat-eye SVGs, rendered inline so colour is themable |
+| **Mobile responsive** | Board stacks above sanctum above thinking panel on narrow viewports |
+| **Tested** | 25 unit tests covering game logic and minimax correctness (immediate wins, blocks, faster-win tiebreak, never-loses-to-random, α-β pruning) |
 | **Static** | Exports as a fully static site — runs anywhere a CDN can serve files |
 
 ---
 
 ## How the Pharaoh thinks
 
-The AI is a textbook Minimax search with three improvements:
+The AI is a textbook Minimax search with three refinements:
 
-1. **Terminal scoring with depth penalty** — wins are worth `10 − depth`, losses `−10 + depth`. A win in two plies is worth more than a win in four; a loss in four plies is preferable to a loss in two. This is what makes an unbeatable AI feel *aggressive*.
+1. **Depth-penalty terminal scoring** — wins are worth `10 − depth`, losses `−10 + depth`. A win in two plies is worth more than a win in four; a loss in four plies is preferable to a loss in two. This is what makes an unbeatable AI feel *aggressive*.
 2. **α-β pruning** — branches that cannot improve on what's already on the table are skipped; the visualization flags them as `pruned`.
-3. **Depth-limited mode (Scribe)** — minimax cut off at 2 plies, giving a realistically beatable opponent. Useful for showing how the search depth changes the AI's choices.
+3. **Depth-limited mode (Scribe)** — minimax cut off at 2 plies, giving a realistically beatable opponent. Useful for showing how search depth changes the AI's choices.
 
-The full algorithm lives in [`src/lib/minimax.ts`](src/lib/minimax.ts) — under 200 lines, pure, fully covered by the on-screen visualization.
-
----
-
-## Tech stack
-
-- **[Next.js 16](https://nextjs.org)** (App Router, Turbopack, static export)
-- **[React 19](https://react.dev)**
-- **[TypeScript 5](https://www.typescriptlang.org)**
-- **[Tailwind CSS v4](https://tailwindcss.com)** with `@theme` tokens
-- **[Zustand](https://github.com/pmndrs/zustand)** for game state and the i18n store (with `persist` middleware for locale)
-- **[Framer Motion](https://www.framer.com/motion/)** for entry/exit animations and the verdict banner
-- **Web Audio API** — synthesized in-browser, zero audio assets
-- **`next/font`** — Cinzel (English display), Cormorant Garamond (English body), Amiri (Arabic)
-- **GitHub Actions** deploys a static export to GitHub Pages on every push to `main`
+The full algorithm lives in [`src/lib/minimax.ts`](src/lib/minimax.ts) — under 200 lines, pure, fully covered by the on-screen visualization and the test suite.
 
 ---
 
-## Bilingual support
+## Tech
 
-Locale is stored in a tiny Zustand slice with `localStorage` persistence so it survives reloads. A `LocaleEffect` client component syncs `document.documentElement.lang` and `dir` so that native `:lang(ar)` and `[dir="rtl"]` CSS selectors light up — used for font swap and any direction-aware layout. All strings live in [`src/lib/i18n.ts`](src/lib/i18n.ts).
-
-Egyptian-accurate naming throughout:
-
-| EN | AR | Meaning |
-|---|---|---|
-| Pharaoh's Gambit | تحدّي الفرعون | "The Pharaoh's Challenge" |
-| Trial of the Gods | نزال الآلهة | "Contest of the Gods" |
-| Pharaoh / Scribe / Apprentice | فرعون / كاتب / مُتدرِّب | The three AI tiers |
-| Glory to the Ankh | المجد للعنخ | Victory banner |
-| The Sands Are Even | تساوت الرّمال | Draw banner |
+[Next.js 16](https://nextjs.org) (App Router, Turbopack, static export) ·
+[React 19](https://react.dev) ·
+[TypeScript 5](https://www.typescriptlang.org) ·
+[Tailwind CSS v4](https://tailwindcss.com) ·
+[Zustand](https://github.com/pmndrs/zustand) ·
+[Framer Motion](https://www.framer.com/motion/) ·
+Web Audio ·
+Vitest ·
+GitHub Actions
 
 ---
 
@@ -133,100 +92,20 @@ Egyptian-accurate naming throughout:
 git clone https://github.com/ahmedEid1/Tic-Tac-Toe.git
 cd Tic-Tac-Toe
 npm install
-npm run dev
+npm run dev    # http://localhost:3000
+npm test       # 25 unit tests
 ```
 
-Open <http://localhost:3000> in your browser.
-
-### Other scripts
-
-| Script | What it does |
-|---|---|
-| `npm run dev` | Start the Turbopack dev server |
-| `npm run build` | Produce a static export in `out/` (set `NEXT_PUBLIC_BASE_PATH` if hosting under a sub-path like GitHub Pages) |
-| `npm run lint` | Lint with ESLint (the Next.js config) |
-| `node scripts/screenshots.mjs` | Regenerate the README screenshots (requires the dev server running) |
-
----
-
-## Deploying
-
-The repo ships with a GitHub Actions workflow at [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) that builds a static export with `NEXT_PUBLIC_BASE_PATH=/Tic-Tac-Toe` and publishes to **GitHub Pages** on every push to `main`. The workflow auto-enables Pages on the first run.
-
-To deploy your own fork:
-
-1. Fork the repo. It must be **public** for Pages to work on the free plan.
-2. Open **Settings → Pages** and confirm **Source = GitHub Actions** (the workflow does this for you on the first run; set it manually if needed).
-3. Push to `main` (or trigger the workflow from the Actions tab). The live URL appears once the run completes.
-4. If your repo isn't named `Tic-Tac-Toe`, update `NEXT_PUBLIC_BASE_PATH` in `deploy.yml`.
-
-`npm run build` produces a fully static export in `out/` — usable with any static host (Netlify, Cloudflare Pages, S3, nginx, …). On a root domain leave `NEXT_PUBLIC_BASE_PATH` unset; under a sub-path set it to the path, e.g. `/Tic-Tac-Toe`.
-
----
-
-## Project layout
-
-```
-src/
-  app/
-    layout.tsx          Root layout (fonts, metadata, LocaleEffect)
-    page.tsx            Page composition
-    globals.css         Tailwind v4 theme tokens + small custom utilities
-  components/
-    game/               Board2D, PieceToken
-    glyphs/             AnkhGlyph, EyeOfHorusGlyph (the SVGs)
-    ui/                 Header, ModeSelector, DifficultySelector,
-                        Scoreboard, GameControls, ThinkingPanel,
-                        AlgorithmExplainer, VerdictBanner,
-                        SoundToggle, LanguageToggle, Footer
-    system/             LocaleEffect (syncs html lang/dir to store)
-  lib/
-    game.ts             Pure game logic — board, winner detection
-    minimax.ts          The AI search + tree recording
-    sound.ts            Web Audio synthesis (no asset files)
-    types.ts            Shared types
-    i18n.ts             EN + AR strings, locale store, outcome formatter
-  store/
-    gameStore.ts        Zustand game store — board, mode, AI loop
-public/
-  ankh.svg              Wikimedia public-domain Ankh
-  eye-of-horus.svg      Wikimedia public-domain Wedjat
-  favicon.svg           Ankh-shaped favicon
-  screenshots/          README + OG images
-scripts/
-  screenshots.mjs       Regenerates the README screenshots
-.github/workflows/
-  deploy.yml            Build + deploy to GitHub Pages
-  ci.yml                Lint + build on every PR
-```
+To deploy your own fork: the repo's [`deploy.yml`](.github/workflows/deploy.yml) workflow builds a static export with `NEXT_PUBLIC_BASE_PATH=/Tic-Tac-Toe` and publishes to GitHub Pages on every push to `main`. Fork must be public for the free plan; the workflow auto-enables Pages on first run.
 
 ---
 
 ## Credits
 
-- **Ankh** SVG — [Wikimedia Commons, public domain](https://commons.wikimedia.org/wiki/File:Ankh_(SVG)_01.svg)
-- **Eye of Horus** SVG — [Wikimedia Commons, public domain](https://commons.wikimedia.org/wiki/File:Eye_of_Horus_bw.svg)
-- **Cinzel** — Natanael Gama, [Open Font License](https://fonts.google.com/specimen/Cinzel)
-- **Cormorant Garamond** — Christian Thalmann, [Open Font License](https://fonts.google.com/specimen/Cormorant+Garamond)
-- **Amiri** — Khaled Hosny, [Open Font License](https://fonts.google.com/specimen/Amiri)
+- **Ankh** — [Wikimedia Commons, public domain](https://commons.wikimedia.org/wiki/File:Ankh_(SVG)_01.svg)
+- **Eye of Horus** — [Wikimedia Commons, public domain](https://commons.wikimedia.org/wiki/File:Eye_of_Horus_bw.svg)
+- **Fonts** — [Cinzel](https://fonts.google.com/specimen/Cinzel), [Cormorant Garamond](https://fonts.google.com/specimen/Cormorant+Garamond), [Amiri](https://fonts.google.com/specimen/Amiri) — all SIL Open Font License
 
 ---
 
-## Star history
-
-<a href="https://www.star-history.com/#ahmedEid1/Tic-Tac-Toe&Date">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ahmedEid1/Tic-Tac-Toe&type=Date&theme=dark" />
-    <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ahmedEid1/Tic-Tac-Toe&type=Date" />
-  </picture>
-</a>
-
----
-
-## License
-
-[MIT](LICENSE) — do whatever you like with it.
-
-<div align="center">
-<sub>Built with ☥. ❤️ stars, forks, and pull requests welcome.</sub>
-</div>
+[MIT](LICENSE)
